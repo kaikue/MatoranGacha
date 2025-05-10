@@ -15,6 +15,11 @@ class SyllableFrequency
 
 public class MatoranGenerator : MonoBehaviour
 {
+    public List<GameObject> masks;
+    public GameObject head;
+    public List<GameObject> bodyParts;
+    public List<GameObject> feet;
+    public GameObject matoranParts;
     public string Name;
 
     private const float TWO_SYLLABLES_CHANCE = 0.6f;
@@ -88,7 +93,8 @@ public class MatoranGenerator : MonoBehaviour
         { "du", 1 },
         { "ca", 2 },
         { "bo", 1 },
-        { "vu", 1 }
+        { "vu", 1 },
+        { "u", 1 },
     };
 
     private string GenerateName()
@@ -113,11 +119,34 @@ public class MatoranGenerator : MonoBehaviour
             } while (name.EndsWith(syllable[0]));
             name += syllable;
         }
+        name = name[0].ToString().ToUpper() + name.Substring(1);
         return name;
+    }
+
+    private void GenerateParts()
+    {
+        if (Random.Range(0f, 1f) < 0.5f)
+        {
+            //TODO head color light gray or dark gray
+        }
+
+        int er = Random.Range(0, 6); //TODO element
+
+        int mr = Random.Range(0, masks.Count);
+        masks[mr].SetActive(true);
+        if (mr == 0)
+        {
+            //kaukau special case
+        }
+        else
+        {
+
+        }
     }
 
     private void Start()
     {
         Name = GenerateName();
+        GenerateParts();
     }
 }
