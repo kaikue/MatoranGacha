@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5069198331136695895}
   - {fileID: 3452703620247798695}
   - {fileID: 6035397002034198510}
   - {fileID: 8097645372855246086}
@@ -36,7 +37,6 @@ Transform:
   - {fileID: 2902552861259426751}
   - {fileID: 7474691653000821484}
   - {fileID: 6143558733783373363}
-  - {fileID: 5069198331136695895}
   - {fileID: 1896604108398301366}
   - {fileID: 1516530829866055608}
   - {fileID: 5409385175360829128}
@@ -113,7 +113,6 @@ Transform:
   - {fileID: 5971581037664317348}
   - {fileID: 6718350601729091636}
   - {fileID: 2607737315291889998}
-  - {fileID: 1373958410518954505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5093336299822111919
@@ -131,72 +130,73 @@ MonoBehaviour:
   colors:
     _serializedList:
     - Key: pink
-      Value: {r: 0.9843138, g: 0.5882353, b: 0.67058825, a: 1}
+      Value: {r: 0.93725497, g: 0.35686275, b: 0.7019608, a: 1}
     - Key: red
-      Value: {r: 0.7843138, g: 0.098039225, b: 0.03137255, a: 1}
+      Value: {r: 0.7019608, g: 0, b: 0.023529414, a: 1}
     - Key: sand red
-      Value: {r: 0.6392157, g: 0.47058827, b: 0.46274513, a: 1}
+      Value: {r: 0.7725491, g: 0.5529412, b: 0.5019608, a: 1}
     - Key: dark red
-      Value: {r: 0.4431373, g: 0.050980397, b: 0.054901965, a: 1}
+      Value: {r: 0.4156863, g: 0.054901965, b: 0.08235294, a: 1}
     - Key: tan
-      Value: {r: 0.89019614, g: 0.8000001, b: 0.6156863, a: 1}
+      Value: {r: 0.9333334, g: 0.85098046, b: 0.6431373, a: 1}
     - Key: brown
-      Value: {r: 0.34117648, g: 0.21960786, b: 0.14901961, a: 1}
+      Value: {r: 0.41960788, g: 0.24705884, b: 0.13333334, a: 1}
     - Key: orange
-      Value: {r: 0.9921569, g: 0.5372549, b: 0.09019608, a: 1}
+      Value: {r: 1, g: 0.49411768, b: 0.078431375, a: 1}
     - Key: dark orange
-      Value: {r: 0.65882355, g: 0.32941177, b: 0, a: 1}
+      Value: {r: 0.7019608, g: 0.32941177, b: 0.03137255, a: 1}
     - Key: yellow
-      Value: {r: 0.9450981, g: 0.8000001, b: 0.21176472, a: 1}
+      Value: {r: 1, g: 0.87843144, b: 0.003921569, a: 1}
     - Key: lime
-      Value: {r: 0.7294118, g: 0.909804, b: 0.039215688, a: 1}
+      Value: {r: 0.7686275, g: 0.87843144, b: 0, a: 1}
     - Key: green
-      Value: {r: 0.14117648, g: 0.47450984, b: 0.2392157, a: 1}
+      Value: {r: 0, g: 0.57254905, b: 0.2392157, a: 1}
     - Key: sand green
-      Value: {r: 0.62352943, g: 0.73333335, b: 0.67058825, a: 1}
+      Value: {r: 0.63529414, g: 0.7490196, b: 0.6392157, a: 1}
     - Key: dark green
-      Value: {r: 0.09019608, g: 0.27058825, b: 0.19215688, a: 1}
+      Value: {r: 0.18039216, g: 0.33333334, b: 0.2627451, a: 1}
     - Key: teal
-      Value: {r: 0, g: 0.50980395, b: 0.5568628, a: 1}
+      Value: {r: 0, g: 0.63529414, b: 0.62352943, a: 1}
     - Key: medium blue
-      Value: {r: 0.35686275, g: 0.6117647, b: 0.81568635, a: 1}
+      Value: {r: 0.50980395, g: 0.6784314, b: 0.8470589, a: 1}
     - Key: blue
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0, g: 0.34117648, b: 0.6509804, a: 1}
     - Key: sand blue
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.53333336, g: 0.6, b: 0.67058825, a: 1}
     - Key: dark blue
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.14117648, g: 0.21568629, b: 0.34117648, a: 1}
     - Key: violet
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.20392159, g: 0.28235295, b: 0.6431373, a: 1}
     - Key: purple
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.4784314, g: 0.13725491, b: 0.5529412, a: 1}
     - Key: sand purple
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.70980394, g: 0.4901961, b: 0.64705884, a: 1}
     - Key: white
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 1, g: 1, b: 1, a: 1}
     - Key: light gray
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.6117647, g: 0.6117647, b: 0.6117647, a: 1}
     - Key: dark gray
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.41960788, g: 0.3529412, b: 0.3529412, a: 1}
     - Key: black
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
     - Key: tr red
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.6117647, g: 0, b: 0.0627451, a: 0.65882355}
     - Key: tr orange
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 1, g: 0.25882354, b: 0.19215688, a: 0.65882355}
     - Key: tr yellow
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 1, g: 0.8431373, b: 0, a: 0.65882355}
     - Key: tr green
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.12941177, g: 0.46274513, b: 0.14509805, a: 0.65882355}
     - Key: tr blue
-      Value: {r: 1, g: 0, b: 0, a: 1}
-    - Key: tr light blue
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0, g: 0.16078432, b: 0.41960788, a: 0.65882355}
+    - Key: tr medium blue
+      Value: {r: 0.46274513, g: 0.6392157, b: 0.7843138, a: 0.65882355}
     - Key: tr clear
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.9333334, g: 0.9333334, b: 0.9333334, a: 0.65882355}
     - Key: tr black
-      Value: {r: 1, g: 0, b: 0, a: 1}
+      Value: {r: 0.3029392, g: 0.305, b: 0.27202705, a: 0.65882355}
   masks:
+  - {fileID: 5553705433079186669}
   - {fileID: 2639574520777873693}
   - {fileID: 6379869165213510996}
   - {fileID: 8875272413520005052}
@@ -204,7 +204,6 @@ MonoBehaviour:
   - {fileID: 2525429630909362437}
   - {fileID: 7849951000952610902}
   - {fileID: 6776121605276322953}
-  - {fileID: 5553705433079186669}
   - {fileID: 1232235668324796940}
   - {fileID: 2179773476937166082}
   - {fileID: 4637071013469039730}
@@ -218,6 +217,7 @@ MonoBehaviour:
   - {fileID: 7281408500613428092}
   matoranParts: {fileID: 3585916974915245327}
   Name: 
+  Village: 
 --- !u!1 &4851558187596001268
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5971581037664317348
 Transform:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -625,7 +625,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -741,81 +741,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &1485060432775996898
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6891417949843099524}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.4843228
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.7636377
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.8116689
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
-    - target: {fileID: 919132149155446097, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-      propertyPath: m_Name
-      value: 32571-Kaukau
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
---- !u!4 &1373958410518954505 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
-  m_PrefabInstance: {fileID: 1485060432775996898}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2150660266715379549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,7 +856,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1046,7 +976,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1162,7 +1092,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1282,7 +1212,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1410,7 +1340,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1539,7 +1469,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1662,7 +1592,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1782,7 +1712,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1907,7 +1837,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2027,7 +1957,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2082,6 +2012,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9398cd3d825f6334b927b7c0a77ddfe5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0279353481bf90946bfab7b0b07ae9b0, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 9398cd3d825f6334b927b7c0a77ddfe5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0279353481bf90946bfab7b0b07ae9b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 9398cd3d825f6334b927b7c0a77ddfe5, type: 3}
@@ -2147,7 +2081,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2263,7 +2197,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2374,7 +2308,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2499,7 +2433,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

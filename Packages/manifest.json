@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "ayellowpaper.serialized-dictionary": "https://github.com/ayellowpaper/SerializedDictionary.git",
     "com.unity.collab-proxy": "2.8.2",
     "com.unity.feature.development": "1.0.2",
     "com.unity.inputsystem": "1.14.0",

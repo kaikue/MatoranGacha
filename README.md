@@ -1,1 +1,13 @@
 # MatoranGacha
+- top down view of table
+- click to fling open double metru lid pod
+	- shake & rattle first? or right click?
+- parts spill out onto table, clatter noise
+- click to move them to center in correct spot
+	- disable collider
+	- make snap sound if connecting
+	- mask requires head
+- when finished: sound effect, rotate, show randomized name + element (bionicle font + matoran alphabet)
+	- save/load option? seed? screenshot
+	- "generate another" button
+- post processing

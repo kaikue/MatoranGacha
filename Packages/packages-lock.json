@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "ayellowpaper.serialized-dictionary": {
-      "version": "https://github.com/ayellowpaper/SerializedDictionary.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f3ddbf09e20fc0c55b4468b86ccf05f0f5b04d25"
-    },
     "com.unity.collab-proxy": {
       "version": "2.8.2",
       "depth": 0,
