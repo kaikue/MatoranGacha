@@ -128,6 +128,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da38c4f85dbd88d4e957b2cce5ecc6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors:
+    _serializedList:
+    - Key: pink
+      Value: {r: 0.9843138, g: 0.5882353, b: 0.67058825, a: 1}
+    - Key: red
+      Value: {r: 0.7843138, g: 0.098039225, b: 0.03137255, a: 1}
+    - Key: sand red
+      Value: {r: 0.6392157, g: 0.47058827, b: 0.46274513, a: 1}
+    - Key: dark red
+      Value: {r: 0.4431373, g: 0.050980397, b: 0.054901965, a: 1}
+    - Key: tan
+      Value: {r: 0.89019614, g: 0.8000001, b: 0.6156863, a: 1}
+    - Key: brown
+      Value: {r: 0.34117648, g: 0.21960786, b: 0.14901961, a: 1}
+    - Key: orange
+      Value: {r: 0.9921569, g: 0.5372549, b: 0.09019608, a: 1}
+    - Key: dark orange
+      Value: {r: 0.65882355, g: 0.32941177, b: 0, a: 1}
+    - Key: yellow
+      Value: {r: 0.9450981, g: 0.8000001, b: 0.21176472, a: 1}
+    - Key: lime
+      Value: {r: 0.7294118, g: 0.909804, b: 0.039215688, a: 1}
+    - Key: green
+      Value: {r: 0.14117648, g: 0.47450984, b: 0.2392157, a: 1}
+    - Key: sand green
+      Value: {r: 0.62352943, g: 0.73333335, b: 0.67058825, a: 1}
+    - Key: dark green
+      Value: {r: 0.09019608, g: 0.27058825, b: 0.19215688, a: 1}
+    - Key: teal
+      Value: {r: 0, g: 0.50980395, b: 0.5568628, a: 1}
+    - Key: medium blue
+      Value: {r: 0.35686275, g: 0.6117647, b: 0.81568635, a: 1}
+    - Key: blue
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: sand blue
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: dark blue
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: violet
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: purple
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: sand purple
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: white
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: light gray
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: dark gray
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: black
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr red
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr orange
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr yellow
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr green
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr blue
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr light blue
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr clear
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: tr black
+      Value: {r: 1, g: 0, b: 0, a: 1}
   masks:
   - {fileID: 2639574520777873693}
   - {fileID: 6379869165213510996}
@@ -253,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5971581037664317348
 Transform:
   m_ObjectHideFlags: 0
@@ -729,11 +797,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2e9fe664caa00db4d8aaf0d5562e3117, type: 2}
+      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
     - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2e9fe664caa00db4d8aaf0d5562e3117, type: 2}
+      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: m_Name
       value: 32571-Kaukau
@@ -1403,11 +1471,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2e9fe664caa00db4d8aaf0d5562e3117, type: 2}
+      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
     - target: {fileID: -7511558181221131132, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2e9fe664caa00db4d8aaf0d5562e3117, type: 2}
+      objectReference: {fileID: 2100000, guid: 75b222515850c134488ae2a115a4a9fd, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f7f5e816fc58364ba1e9f5031555daf, type: 3}
       propertyPath: m_Name
       value: 32571-Kaukau

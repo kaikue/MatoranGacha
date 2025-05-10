@@ -1,5 +1,5 @@
+using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 class SyllableFrequencyList
@@ -15,6 +15,8 @@ class SyllableFrequency
 
 public class MatoranGenerator : MonoBehaviour
 {
+    public SerializedDictionary<string, Color> colors;
+
     public List<GameObject> masks;
     public GameObject head;
     public List<GameObject> bodyParts;
