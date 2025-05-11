@@ -17,13 +17,27 @@ public class MatoranGenerator : MonoBehaviour
 {
     public SerializedDictionary<string, Color> colors;
 
+    public GameObject podLeft;
+    public GameObject podRight;
     public List<GameObject> masks;
+    private GameObject activeMask;
     public GameObject head;
     public List<GameObject> bodyParts;
     public List<GameObject> feet;
     public GameObject matoranParts;
     public string Name;
     public string Village;
+    private AudioSource audioSource;
+    public AudioClip openSound;
+    public AudioClip clatterSound;
+    public AudioClip[] connectSounds;
+    public AudioClip completeSound;
+
+    [HideInInspector]
+    public bool headComplete = false;
+    private bool torsoComplete = false;
+    private int limbsComplete = 0;
+    private bool maskComplete = false;
 
     private const float TWO_SYLLABLES_CHANCE = 0.6f;
     private const float RARE_COLOR_CHANCE = 0.3f;
@@ -212,11 +226,12 @@ public class MatoranGenerator : MonoBehaviour
 
         string footColor;
         r = Random.Range(0, masks.Count);
-        masks[r].SetActive(true);
+        activeMask = masks[r];
+        activeMask.SetActive(true);
         if (r == 0)
         {
             int r2 = Random.Range(0, kaukauColors.Count);
-            foreach (Material mat in masks[r].GetComponent<MeshRenderer>().materials)
+            foreach (Material mat in activeMask.GetComponent<MeshRenderer>().materials)
             {
                 mat.color = colors[kaukauColors[r2]];
             }
@@ -227,7 +242,7 @@ public class MatoranGenerator : MonoBehaviour
         else
         {
             string maskColor = GetRandomColor(mainColors, rareColors);
-            foreach (Material mat in masks[r].GetComponent<MeshRenderer>().materials)
+            foreach (Material mat in activeMask.GetComponent<MeshRenderer>().materials)
             {
                 mat.color = colors[maskColor];
             }
@@ -252,7 +267,93 @@ public class MatoranGenerator : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Name = GenerateName();
         GenerateParts();
+    }
+
+    private void AddRandomImpulse(GameObject go)
+    {
+        //go.GetComponent<Rigidbody>().AddExplosionForce(10f, go.transform.position, 10f);
+        float r = 4f;
+        Vector3 force = new Vector3(Random.Range(-r, r), Random.Range(-r, r), Random.Range(-r, r));
+        go.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+    }
+
+    public void OpenPod()
+    {
+        head.GetComponent<MatoranPart>().clickable = true;
+        AddRandomImpulse(head);
+        activeMask.GetComponent<MatoranPart>().clickable = true;
+        AddRandomImpulse(activeMask);
+        foreach (GameObject bodyPart in bodyParts)
+        {
+            bodyPart.GetComponent<MatoranPart>().clickable = true;
+            AddRandomImpulse(bodyPart);
+        }
+        foreach (GameObject foot in feet)
+        {
+            foot.GetComponent<MatoranPart>().clickable = true;
+            AddRandomImpulse(foot);
+        }
+
+        float openForce = 15f;
+        float randomExtra = 4f;
+        podLeft.GetComponent<MeshCollider>().enabled = false;
+        podLeft.GetComponent<Rigidbody>().isKinematic = false;
+        podLeft.GetComponent<Rigidbody>().useGravity = true;
+        podLeft.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        Vector3 openLeftForce = Vector3.left * openForce + Vector3.up * Random.Range(-randomExtra, randomExtra) + Vector3.forward * Random.Range(-randomExtra, randomExtra);
+        podLeft.GetComponent<Rigidbody>().AddForce(openLeftForce, ForceMode.Impulse);
+        podRight.GetComponent<MeshCollider>().enabled = false;
+        podRight.GetComponent<Rigidbody>().isKinematic = false;
+        podRight.GetComponent<Rigidbody>().useGravity = true;
+        podRight.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        Vector3 openRightForce = Vector3.right * openForce + Vector3.up * Random.Range(-randomExtra, randomExtra) + Vector3.forward * Random.Range(-randomExtra, randomExtra);
+        podRight.GetComponent<Rigidbody>().AddForce(openRightForce, ForceMode.Impulse);
+
+        audioSource.PlayOneShot(openSound);
+        audioSource.PlayOneShot(clatterSound);
+    }
+
+    private void PlayConnectSound()
+    {
+        int r = Random.Range(0, connectSounds.Length);
+        audioSource.PlayOneShot(connectSounds[r]);
+    }
+
+    public void PartComplete(string part)
+    {
+        print("complete " + part);
+        if (part == "head")
+        {
+            headComplete = true;
+            if (torsoComplete) PlayConnectSound();
+        }
+        if (part == "torso")
+        {
+            torsoComplete = true;
+            if (headComplete || limbsComplete > 0) PlayConnectSound();
+        }
+        if (part == "limb")
+        {
+            limbsComplete++;
+            if (torsoComplete) PlayConnectSound();
+        }
+        if (part == "mask")
+        {
+            maskComplete = true;
+            PlayConnectSound();
+        }
+
+        if (headComplete && torsoComplete && maskComplete && limbsComplete == 4)
+        {
+            CompleteMatoran();
+        }
+    }
+
+    private void CompleteMatoran()
+    {
+        //TODO sound, show name & village, restart button
     }
 }
