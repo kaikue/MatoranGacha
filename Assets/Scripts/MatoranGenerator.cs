@@ -1,5 +1,7 @@
 using AYellowpaper.SerializedCollections;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 class SyllableFrequencyList
@@ -30,14 +32,20 @@ public class MatoranGenerator : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip openSound;
     public AudioClip clatterSound;
-    public AudioClip[] connectSounds;
     public AudioClip completeSound;
+    public GameObject completeUI;
+    public TMP_Text nameText;
+    public TMP_Text nameText2;
+    public TMP_Text villageText;
 
     [HideInInspector]
     public bool headComplete = false;
-    private bool torsoComplete = false;
-    private int limbsComplete = 0;
-    private bool maskComplete = false;
+    [HideInInspector]
+    public bool torsoComplete = false;
+    [HideInInspector]
+    public int limbsComplete = 0;
+    [HideInInspector]
+    public bool maskComplete = false;
 
     private const float TWO_SYLLABLES_CHANCE = 0.6f;
     private const float RARE_COLOR_CHANCE = 0.3f;
@@ -269,7 +277,10 @@ public class MatoranGenerator : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         Name = GenerateName();
+        nameText.text = Name;
+        nameText2.text = Name;
         GenerateParts();
+        villageText.text = Village;
     }
 
     private void AddRandomImpulse(GameObject go)
@@ -316,44 +327,36 @@ public class MatoranGenerator : MonoBehaviour
         audioSource.PlayOneShot(clatterSound);
     }
 
-    private void PlayConnectSound()
-    {
-        int r = Random.Range(0, connectSounds.Length);
-        audioSource.PlayOneShot(connectSounds[r]);
-    }
-
     public void PartComplete(string part)
     {
         print("complete " + part);
         if (part == "head")
         {
             headComplete = true;
-            if (torsoComplete) PlayConnectSound();
         }
         if (part == "torso")
         {
             torsoComplete = true;
-            if (headComplete || limbsComplete > 0) PlayConnectSound();
         }
         if (part == "limb")
         {
             limbsComplete++;
-            if (torsoComplete) PlayConnectSound();
         }
         if (part == "mask")
         {
             maskComplete = true;
-            PlayConnectSound();
         }
 
         if (headComplete && torsoComplete && maskComplete && limbsComplete == 4)
         {
-            CompleteMatoran();
+            StartCoroutine(CompleteMatoran());
         }
     }
 
-    private void CompleteMatoran()
+    private IEnumerator CompleteMatoran()
     {
-        //TODO sound, show name & village, restart button
+        yield return new WaitForSeconds(1.5f);
+        audioSource.PlayOneShot(completeSound);
+        completeUI.SetActive(true);
     }
 }
