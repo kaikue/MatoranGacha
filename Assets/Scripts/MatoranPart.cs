@@ -16,8 +16,9 @@ public class MatoranPart : MonoBehaviour
     public AudioClip[] connectSounds;
     public AudioClip[] maskConnectSounds;
     public AudioClip errorSound;
+    public AudioClip clickSound;
     private AudioSource audioSource;
-    private MatoranGenerator controller;
+    private MatoranGenerator generator;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class MatoranPart : MonoBehaviour
         goalRotation = transform.rotation;
         transform.position = Vector3.zero;
         audioSource = GetComponent<AudioSource>();
-        controller = FindAnyObjectByType<MatoranGenerator>();
+        generator = GetComponentInParent<MatoranGenerator>();
     }
 
     private IEnumerator PlayConnectSound()
@@ -46,31 +47,34 @@ public class MatoranPart : MonoBehaviour
     private void OnMouseDown()
     {
         if (!clickable) return;
-        if (partName == "mask" && !FindAnyObjectByType<MatoranGenerator>().headComplete)
+        if (partName == "mask" && !generator.headComplete)
         {
+            StartCoroutine(generator.HighlightHead());
             audioSource.PlayOneShot(errorSound);
             return;
         }
 
+        audioSource.PlayOneShot(clickSound);
         clickable = false;
         clickedPos = transform.position;
         clickedRotation = transform.rotation;
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
+        generator.PartComplete(partName);
         StartCoroutine(MoveToPosition());
 
         if (partName == "head")
         {
-            if (controller.torsoComplete) StartCoroutine(PlayConnectSound());
+            if (generator.torsoComplete) StartCoroutine(PlayConnectSound());
         }
         if (partName == "torso")
         {
-            if (controller.headComplete || controller.limbsComplete > 0) StartCoroutine(PlayConnectSound());
+            if (generator.headComplete || generator.limbsComplete > 0) StartCoroutine(PlayConnectSound());
         }
         if (partName == "limb")
         {
-            if (controller.torsoComplete) StartCoroutine(PlayConnectSound());
+            if (generator.torsoComplete) StartCoroutine(PlayConnectSound());
         }
         if (partName == "mask")
         {
@@ -80,10 +84,9 @@ public class MatoranPart : MonoBehaviour
 
     private IEnumerator MoveToPosition()
     {
-        controller.PartComplete(partName);
         for (float t = 0; t < MOVE_TIME; t += Time.fixedDeltaTime)
         {
-            float animT = movementCurve.Evaluate(t);
+            float animT = movementCurve.Evaluate(t / MOVE_TIME);
             transform.SetPositionAndRotation(Vector3.Lerp(clickedPos, goalPos, animT), Quaternion.Lerp(clickedRotation, goalRotation, animT));
             yield return new WaitForFixedUpdate();
         }

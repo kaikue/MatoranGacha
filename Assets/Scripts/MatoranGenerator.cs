@@ -1,6 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -33,10 +34,17 @@ public class MatoranGenerator : MonoBehaviour
     public AudioClip openSound;
     public AudioClip clatterSound;
     public AudioClip completeSound;
+    public AudioClip clickSound;
+    private const float FADE_IN_TIME = 1f;
+    public AnimationCurve fadeCurve;
     public GameObject completeUI;
     public TMP_Text nameText;
     public TMP_Text nameText2;
     public TMP_Text villageText;
+    public TMP_Text screenshotText;
+    public CanvasGroup mouseTipCanvas;
+    private Coroutine mouseTipCoroutineLids;
+    private Coroutine mouseTipCoroutineParts;
 
     [HideInInspector]
     public bool headComplete = false;
@@ -275,12 +283,16 @@ public class MatoranGenerator : MonoBehaviour
 
     private void Start()
     {
+        completeUI.SetActive(false);
+        screenshotText.alpha = 0;
         audioSource = GetComponent<AudioSource>();
         Name = GenerateName();
         nameText.text = Name;
         nameText2.text = Name;
         GenerateParts();
         villageText.text = Village;
+        mouseTipCanvas.alpha = 0;
+        mouseTipCoroutineLids = StartCoroutine(MouseTipCoroutineLids());
     }
 
     private void AddRandomImpulse(GameObject go)
@@ -325,11 +337,20 @@ public class MatoranGenerator : MonoBehaviour
 
         audioSource.PlayOneShot(openSound);
         audioSource.PlayOneShot(clatterSound);
+
+        StopCoroutine(mouseTipCoroutineLids);
+        SetOutlineAlpha(podLeft.GetComponent<Outline>(), 0);
+        SetOutlineAlpha(podRight.GetComponent<Outline>(), 0);
+        mouseTipCanvas.alpha = 0;
+        mouseTipCoroutineParts = StartCoroutine(MouseTipCoroutineParts());
     }
 
     public void PartComplete(string part)
     {
-        print("complete " + part);
+        StopCoroutine(mouseTipCoroutineParts);
+        mouseTipCanvas.alpha = 0;
+        SetAllPartsOutlineAlpha(0);
+
         if (part == "head")
         {
             headComplete = true;
@@ -357,6 +378,144 @@ public class MatoranGenerator : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         audioSource.PlayOneShot(completeSound);
+        CanvasGroup canvas = completeUI.GetComponent<CanvasGroup>();
+        canvas.alpha = 0;
         completeUI.SetActive(true);
+        for (float t = 0; t < FADE_IN_TIME; t += Time.deltaTime)
+        {
+            float animT = fadeCurve.Evaluate(t / FADE_IN_TIME);
+            canvas.alpha = animT;
+            yield return new WaitForEndOfFrame();
+        }
     }
+
+    public void Screenshot()
+    {
+        audioSource.PlayOneShot(clickSound);
+        StartCoroutine(TakeScreenshot());
+    }
+
+    private IEnumerator TakeScreenshot()
+    {
+        yield return new WaitForEndOfFrame();
+        Texture2D texture = ScreenCapture.CaptureScreenshotAsTexture();
+        byte[] pngData = texture.EncodeToPNG();
+        Destroy(texture);
+
+        string encodedText = System.Convert.ToBase64String(pngData);
+
+#if !UNITY_EDITOR
+        copyClipboard(encodedText);
+#endif
+
+        screenshotText.alpha = 1;
+        yield return new WaitForSeconds(3f);
+        for (float t = 0; t < FADE_IN_TIME; t += Time.deltaTime)
+        {
+            screenshotText.alpha = 1 - t / FADE_IN_TIME;
+            yield return new WaitForEndOfFrame();
+        }
+        screenshotText.alpha = 0;
+    }
+
+    public void Restart()
+    {
+        Controller controller = FindAnyObjectByType<Controller>();
+        controller.GetComponent<AudioSource>().Play();
+        controller.Respawn();
+        Destroy(gameObject);
+    }
+
+    private void SetOutlineAlpha(Outline o, float a)
+    {
+        o.OutlineColor = new Color(o.OutlineColor.r, o.OutlineColor.g, o.OutlineColor.b, a);
+    }
+
+    private IEnumerator MouseTipCoroutineLids()
+    {
+        Outline leftOutline = podLeft.GetComponent<Outline>();
+        Outline rightOutline = podRight.GetComponent<Outline>();
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            for (float t = 0; t < 1f; t += Time.deltaTime)
+            {
+                mouseTipCanvas.alpha = t;
+                SetOutlineAlpha(leftOutline, t);
+                SetOutlineAlpha(rightOutline, t);
+                yield return new WaitForEndOfFrame();
+            }
+            SetOutlineAlpha(leftOutline, 1);
+            SetOutlineAlpha(rightOutline, 1);
+            mouseTipCanvas.alpha = 1;
+            for (float t = 0; t < 1f; t += Time.deltaTime)
+            {
+                mouseTipCanvas.alpha = 1 - t;
+                SetOutlineAlpha(leftOutline, 1 - t);
+                SetOutlineAlpha(rightOutline, 1 - t);
+                yield return new WaitForEndOfFrame();
+            }
+            SetOutlineAlpha(leftOutline, 0);
+            SetOutlineAlpha(rightOutline, 0);
+            mouseTipCanvas.alpha = 0;
+        }
+    }
+
+    private void SetAllPartsOutlineAlpha(float a)
+    {
+        //SetOutlineAlpha(activeMask.GetComponent<Outline>(), a);
+        SetOutlineAlpha(head.GetComponent<Outline>(), a);
+        foreach (GameObject bodyPart in bodyParts)
+        {
+            SetOutlineAlpha(bodyPart.GetComponent<Outline>(), a);
+        }
+        foreach (GameObject foot in feet)
+        {
+            SetOutlineAlpha(foot.GetComponent<Outline>(), a);
+        }
+    }
+
+    private IEnumerator MouseTipCoroutineParts()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            for (float t = 0; t < 1f; t += Time.deltaTime)
+            {
+                mouseTipCanvas.alpha = t;
+                SetAllPartsOutlineAlpha(t);
+                yield return new WaitForEndOfFrame();
+            }
+            SetAllPartsOutlineAlpha(1);
+            mouseTipCanvas.alpha = 1;
+            for (float t = 0; t < 1f; t += Time.deltaTime)
+            {
+                mouseTipCanvas.alpha = 1 - t;
+                SetAllPartsOutlineAlpha(1 - t);
+                yield return new WaitForEndOfFrame();
+            }
+            SetAllPartsOutlineAlpha(0);
+            mouseTipCanvas.alpha = 0;
+        }
+    }
+
+    public IEnumerator HighlightHead()
+    {
+        Outline headOutline = head.GetComponent<Outline>();
+        for (float t = 0; t < 1f; t += Time.deltaTime)
+        {
+            SetOutlineAlpha(headOutline, t);
+            yield return new WaitForEndOfFrame();
+        }
+        SetOutlineAlpha(headOutline, 1);
+        for (float t = 0; t < 1f; t += Time.deltaTime)
+        {
+            SetOutlineAlpha(headOutline, 1 - t);
+            yield return new WaitForEndOfFrame();
+        }
+        SetOutlineAlpha(headOutline, 0);
+    }
+
+    [DllImport("__Internal")]
+    private static extern void copyClipboard(string encodedText);
 }
