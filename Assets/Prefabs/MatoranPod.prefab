@@ -389,25 +389,25 @@ MonoBehaviour:
     - Key: black
       Value: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
     - Key: tr red
-      Value: {r: 0.6117647, g: 0, b: 0.0627451, a: 0.5019608}
+      Value: {r: 0.6117647, g: 0, b: 0.0627451, a: 0.6}
     - Key: tr orange
-      Value: {r: 1, g: 0.25882354, b: 0.19215688, a: 0.5019608}
+      Value: {r: 1, g: 0.25882354, b: 0.19215688, a: 0.6}
     - Key: tr yellow
-      Value: {r: 1, g: 0.8431373, b: 0, a: 0.5019608}
+      Value: {r: 1, g: 0.8431373, b: 0, a: 0.6}
     - Key: tr neon green
-      Value: {r: 0.75294125, g: 0.9607844, b: 0, a: 0.5019608}
+      Value: {r: 0.75294125, g: 0.9607844, b: 0, a: 0.6}
     - Key: tr green
-      Value: {r: 0.12941177, g: 0.46274513, b: 0.14509805, a: 0.5019608}
+      Value: {r: 0.12941177, g: 0.46274513, b: 0.14509805, a: 0.6}
     - Key: tr blue
-      Value: {r: 0, g: 0.16078432, b: 0.41960788, a: 0.5019608}
+      Value: {r: 0, g: 0.16078432, b: 0.41960788, a: 0.6}
     - Key: tr medium blue
-      Value: {r: 0.46274513, g: 0.6392157, b: 0.7843138, a: 0.5019608}
+      Value: {r: 0.46274513, g: 0.6392157, b: 0.7843138, a: 0.6}
     - Key: tr purple
-      Value: {r: 0.33333334, g: 0.14509805, b: 0.7176471, a: 0.5019608}
+      Value: {r: 0.33333334, g: 0.14509805, b: 0.7176471, a: 0.6}
     - Key: tr clear
-      Value: {r: 0.9333334, g: 0.9333334, b: 0.9333334, a: 0.5019608}
+      Value: {r: 0.9333334, g: 0.9333334, b: 0.9333334, a: 0.6}
     - Key: tr black
-      Value: {r: 0.3029392, g: 0.305, b: 0.27202705, a: 0.5019608}
+      Value: {r: 0.3029392, g: 0.305, b: 0.27202705, a: 0.6}
   podLeft: {fileID: 6543784939268245931}
   podRight: {fileID: 4851558187596001268}
   masks:
@@ -1849,7 +1849,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.16094923, a: 1}
   m_Intensity: 4
-  m_Range: 0.75
+  m_Range: 0.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1946,7 +1946,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.16094923, a: 1}
   m_Intensity: 4
-  m_Range: 0.75
+  m_Range: 0.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

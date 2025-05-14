@@ -49,7 +49,7 @@ public class MatoranGenerator : MonoBehaviour
     private Coroutine mouseTipCoroutineParts;
     public Light eyeL;
     public Light eyeR;
-    private Color eyeColor;
+    private float eyeIntensity;
 
     [HideInInspector]
     public bool headComplete = false;
@@ -194,7 +194,8 @@ public class MatoranGenerator : MonoBehaviour
             "04484745C9A219C2A18E739754D9A3BBC71F0DC961B3F86A9FD46F09C7948BEB",
             "9E488BBFA97A6DA89346397C4839F13B4EB42E38D89439D36A8B161BE1D0E045",
             "01B46AE0F255E074711ED7AB468C03C10E5E93098844308063A0748EED3552CF",
-            "10B3776B12C3ACCD55B19EBC0D70D31B6740B27D57D4177B6DE9EC8C6D2EC4A8"
+            "10B3776B12C3ACCD55B19EBC0D70D31B6740B27D57D4177B6DE9EC8C6D2EC4A8",
+            "F2161CB129C6486418FFDA5BDC54AA378CA55A1AD9965C60BDB0F11D1473BAEC"
         };
         return bannedIDs.Contains(GetHashString(name));
     }
@@ -319,15 +320,17 @@ public class MatoranGenerator : MonoBehaviour
 
         List<string> eyeColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr green", "tr blue", "tr medium blue", "tr clear", "tr neon green", "tr purple" };
         r = Random.Range(0, eyeColors.Count);
-        eyeColor = colors[eyeColors[r]];
+        eyeL.color = colors[eyeColors[r]];
+        eyeR.color = colors[eyeColors[r]];
     }
 
     private void Start()
     {
         completeUI.SetActive(false);
         screenshotText.alpha = 0;
-        eyeL.color = Color.clear;
-        eyeR.color = Color.clear;
+        eyeIntensity = eyeL.intensity;
+        eyeL.intensity = 0;
+        eyeR.intensity = 0;
         audioSource = GetComponent<AudioSource>();
         do
         {
@@ -431,13 +434,13 @@ public class MatoranGenerator : MonoBehaviour
         {
             float animT = fadeCurve.Evaluate(t / FADE_IN_TIME);
             canvas.alpha = animT;
-            eyeL.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, animT);
-            eyeR.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, animT);
+            eyeL.intensity = eyeIntensity * animT;
+            eyeR.intensity = eyeIntensity * animT;
             yield return new WaitForEndOfFrame();
         }
         canvas.alpha = 1;
-        eyeL.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, 1);
-        eyeR.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, 1);
+        eyeL.intensity = eyeIntensity;
+        eyeR.intensity = eyeIntensity;
     }
 
     public void Screenshot()
