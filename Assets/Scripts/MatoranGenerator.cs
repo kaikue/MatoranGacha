@@ -2,6 +2,8 @@ using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -130,6 +132,11 @@ public class MatoranGenerator : MonoBehaviour
         { "bo", 1 },
         { "vu", 1 },
         { "u", 1 },
+        { "re", 1 },
+        { "ran", 1 },
+        { "ti", 1 },
+        { "di", 1 },
+        { "pi", 1 },
     };
 
     private string GenerateName()
@@ -137,10 +144,10 @@ public class MatoranGenerator : MonoBehaviour
         List<string> syllablesList = new List<string>();
         foreach (KeyValuePair<string, int> kv in syllableFrequencies)
         {
-            for (int i = 0; i < kv.Value; i++)
-            {
-                syllablesList.Add(kv.Key);
-            }
+            //for (int i = 0; i < kv.Value; i++)
+            //{
+            syllablesList.Add(kv.Key);
+            //}
         }
         string name = "";
         int syllables = Random.Range(0f, 1f) < TWO_SYLLABLES_CHANCE ? 2 : 3;
@@ -156,6 +163,37 @@ public class MatoranGenerator : MonoBehaviour
         }
         name = name[0].ToString().ToUpper() + name.Substring(1);
         return name;
+    }
+
+    private byte[] GetHash(string inputString)
+    {
+        using (HashAlgorithm algorithm = SHA256.Create())
+        {
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+    }
+
+    // https://stackoverflow.com/a/6839784
+    private string GetHashString(string inputString)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (byte b in GetHash(inputString))
+            sb.Append(b.ToString("X2"));
+
+        return sb.ToString();
+    }
+
+    private bool IsBannedName()
+    {
+        List<string> bannedIDs = new List<string>() {
+            "A926DA4BE269C2C6BAB65A965584EBB174C6AAEFB63A6859DEFC43D0702D7C96",
+            "D30C229855C5A3709FCF2DC6DFBA05C57261BF0A6FEB3944DA34EAE608B2F04E",
+            "04484745C9A219C2A18E739754D9A3BBC71F0DC961B3F86A9FD46F09C7948BEB",
+            "9E488BBFA97A6DA89346397C4839F13B4EB42E38D89439D36A8B161BE1D0E045",
+            "01B46AE0F255E074711ED7AB468C03C10E5E93098844308063A0748EED3552CF",
+            "10B3776B12C3ACCD55B19EBC0D70D31B6740B27D57D4177B6DE9EC8C6D2EC4A8"
+        };
+        return bannedIDs.Contains(GetHashString(name));
     }
 
     private string GetRandomColor(List<string> mainColors, List<string> rareColors)
@@ -192,26 +230,26 @@ public class MatoranGenerator : MonoBehaviour
             case 0:
                 Village = "Ta-Koro";
                 mainColors = new List<string>() { "red", "orange", "yellow", "black", "dark red", "dark gray" };
-                rareColors = new List<string>() { "dark green", "brown", "dark blue", "purple", "lime", "sand blue", "sand green", "sand purple", "violet" };
-                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear" };
+                rareColors = new List<string>() { "dark green", "brown", "dark blue", "lime", "sand blue", "sand green", "sand purple", "violet" };
+                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear", "tr neon green", "tr purple" };
                 break;
             case 1:
                 Village = "Ga-Koro";
                 mainColors = new List<string>() { "medium blue", "blue", "dark blue", "teal", "violet", "sand blue" };
                 rareColors = new List<string>() { "pink", "lime", "white", "orange", "yellow", "light gray", "sand red", "sand purple", "sand green" };
-                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear" };
+                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear", "tr neon green", "tr purple" };
                 break;
             case 2:
                 Village = "Onu-Koro";
                 mainColors = new List<string>() { "black", "dark gray", "purple", "dark green" };
                 rareColors = new List<string>() { "violet", "dark blue", "tan", "orange", "dark red", "sand red", "sand blue", "sand green", "sand purple", "light gray" };
-                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr clear" };
+                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr clear", "tr purple" };
                 break;
             case 3:
                 Village = "Le-Koro";
                 mainColors = new List<string>() { "teal", "lime", "green", "dark green", "sand green" };
                 rareColors = new List<string>() { "yellow", "orange", "pink", "red", "white", "dark blue", "sand red", "sand purple", "sand blue", "violet", "purple" };
-                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear" };
+                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr blue", "tr medium blue", "tr clear", "tr neon green", "tr purple" };
                 break;
             case 4:
                 Village = "Ko-Koro";
@@ -223,7 +261,7 @@ public class MatoranGenerator : MonoBehaviour
                 Village = "Po-Koro";
                 mainColors = new List<string>() { "brown", "tan", "black", "dark orange" };
                 rareColors = new List<string>() { "orange", "dark red", "light gray", "dark gray", "dark green", "sand red", "sand blue", "sand green", "sand purple", "pink", "violet" };
-                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr clear" };
+                kaukauColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr black", "tr green", "tr clear", "tr purple" };
                 break;
             default:
                 Village = "Mata Nui";
@@ -238,7 +276,6 @@ public class MatoranGenerator : MonoBehaviour
         {
             bodyPart.GetComponent<MeshRenderer>().material.color = colors[mainColors[r]];
         }
-        print("body: " + mainColors[r]);
 
         string footColor;
         r = Random.Range(0, masks.Count);
@@ -251,7 +288,6 @@ public class MatoranGenerator : MonoBehaviour
             {
                 mat.color = colors[kaukauColors[r2]];
             }
-            print("kaukau: " + kaukauColors[r2]);
 
             footColor = GetRandomColor(mainColors, rareColors);
         }
@@ -262,7 +298,6 @@ public class MatoranGenerator : MonoBehaviour
             {
                 mat.color = colors[maskColor];
             }
-            print("mask: " + maskColor);
 
             if (Random.Range(0f, 1f) < SAME_HEAD_FOOT_COLOR_CHANCE)
             {
@@ -274,7 +309,6 @@ public class MatoranGenerator : MonoBehaviour
             }
         }
 
-        print("foot: " + footColor);
         foreach (GameObject foot in feet)
         {
             foot.GetComponent<MeshRenderer>().material.color = colors[footColor];
@@ -286,7 +320,10 @@ public class MatoranGenerator : MonoBehaviour
         completeUI.SetActive(false);
         screenshotText.alpha = 0;
         audioSource = GetComponent<AudioSource>();
-        Name = GenerateName();
+        do
+        {
+            Name = GenerateName();
+        } while (IsBannedName());
         nameText.text = Name;
         nameText2.text = Name;
         GenerateParts();
