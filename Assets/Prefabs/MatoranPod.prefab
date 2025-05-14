@@ -399,7 +399,7 @@ MonoBehaviour:
     - Key: tr green
       Value: {r: 0.12941177, g: 0.46274513, b: 0.14509805, a: 0.6}
     - Key: tr blue
-      Value: {r: 0, g: 0.16078432, b: 0.41960788, a: 0.6}
+      Value: {r: 0, g: 0.29351377, b: 0.766, a: 0.6}
     - Key: tr medium blue
       Value: {r: 0.46274513, g: 0.6392157, b: 0.7843138, a: 0.6}
     - Key: tr purple

@@ -197,7 +197,7 @@ public class MatoranGenerator : MonoBehaviour
             "10B3776B12C3ACCD55B19EBC0D70D31B6740B27D57D4177B6DE9EC8C6D2EC4A8",
             "F2161CB129C6486418FFDA5BDC54AA378CA55A1AD9965C60BDB0F11D1473BAEC"
         };
-        return bannedIDs.Contains(GetHashString(name));
+        return bannedIDs.Contains(GetHashString(Name));
     }
 
     private string GetRandomColor(List<string> mainColors, List<string> rareColors)
