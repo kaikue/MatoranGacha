@@ -436,8 +436,8 @@ public class MatoranGenerator : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         canvas.alpha = 1;
-        eyeL.color = eyeColor;
-        eyeR.color = eyeColor;
+        eyeL.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, 1);
+        eyeR.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, 1);
     }
 
     public void Screenshot()
