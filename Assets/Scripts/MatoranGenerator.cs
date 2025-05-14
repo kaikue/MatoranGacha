@@ -47,6 +47,9 @@ public class MatoranGenerator : MonoBehaviour
     public CanvasGroup mouseTipCanvas;
     private Coroutine mouseTipCoroutineLids;
     private Coroutine mouseTipCoroutineParts;
+    public Light eyeL;
+    public Light eyeR;
+    private Color eyeColor;
 
     [HideInInspector]
     public bool headComplete = false;
@@ -313,12 +316,18 @@ public class MatoranGenerator : MonoBehaviour
         {
             foot.GetComponent<MeshRenderer>().material.color = colors[footColor];
         }
+
+        List<string> eyeColors = new List<string>() { "tr red", "tr orange", "tr yellow", "tr green", "tr blue", "tr medium blue", "tr clear", "tr neon green", "tr purple" };
+        r = Random.Range(0, eyeColors.Count);
+        eyeColor = colors[eyeColors[r]];
     }
 
     private void Start()
     {
         completeUI.SetActive(false);
         screenshotText.alpha = 0;
+        eyeL.color = Color.clear;
+        eyeR.color = Color.clear;
         audioSource = GetComponent<AudioSource>();
         do
         {
@@ -422,8 +431,13 @@ public class MatoranGenerator : MonoBehaviour
         {
             float animT = fadeCurve.Evaluate(t / FADE_IN_TIME);
             canvas.alpha = animT;
+            eyeL.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, animT);
+            eyeR.color = new Color(eyeColor.r, eyeColor.g, eyeColor.b, animT);
             yield return new WaitForEndOfFrame();
         }
+        canvas.alpha = 1;
+        eyeL.color = eyeColor;
+        eyeR.color = eyeColor;
     }
 
     public void Screenshot()
